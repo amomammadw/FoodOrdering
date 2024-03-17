@@ -1,7 +1,8 @@
-import { Image, StyleSheet } from "react-native";
+import { Image, Pressable, StyleSheet, Text, View } from "react-native";
 import { Product } from "@/src/types";
-import { Text, View } from "@/src/components/Themed";
 import Colors from "../constants/Colors";
+import { Link } from "expo-router";
+import { StatusBar } from "expo-status-bar";
 
 interface IProductListItemProps {
     product: Product;
@@ -11,11 +12,13 @@ export const defaultPizzaImage = "https://notjustdev-dummy.s3.us-east-2.amazonaw
 
 export const ProductListItem = ({ product }: IProductListItemProps) => {
     return (
-        <View style={styles.container}>
-            <Image resizeMode="contain" source={{ uri: product.image || defaultPizzaImage }} style={styles.image} />
-            <Text style={styles.title}>{product.name}</Text>
-            <Text style={styles.price}>${product.price}</Text>
-        </View>
+        <Link href={"/product"} asChild>
+            <Pressable style={styles.container}>
+                <Image resizeMode="contain" source={{ uri: product.image || defaultPizzaImage }} style={styles.image} />
+                <Text style={styles.title}>{product.name}</Text>
+                <Text style={styles.price}>${product.price}</Text>
+            </Pressable>
+        </Link>
     );
 };
 
@@ -25,6 +28,7 @@ const styles = StyleSheet.create({
         padding: 10,
         maxWidth: "50%",
         borderRadius: 20,
+        backgroundColor: "white",
     },
     title: {
         fontSize: 18,
