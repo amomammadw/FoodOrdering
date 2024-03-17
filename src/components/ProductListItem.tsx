@@ -2,7 +2,6 @@ import { Image, Pressable, StyleSheet, Text, View } from "react-native";
 import { Product } from "@/src/types";
 import Colors from "../constants/Colors";
 import { Link } from "expo-router";
-import { StatusBar } from "expo-status-bar";
 
 interface IProductListItemProps {
     product: Product;
@@ -12,7 +11,7 @@ export const defaultPizzaImage = "https://notjustdev-dummy.s3.us-east-2.amazonaw
 
 export const ProductListItem = ({ product }: IProductListItemProps) => {
     return (
-        <Link href={"/product"} asChild>
+        <Link href={`/menu/${product.id}`} asChild>
             <Pressable style={styles.container}>
                 <Image resizeMode="contain" source={{ uri: product.image || defaultPizzaImage }} style={styles.image} />
                 <Text style={styles.title}>{product.name}</Text>
