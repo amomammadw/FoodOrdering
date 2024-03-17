@@ -1,21 +1,31 @@
 import products from "@/assets/data/products";
 import Button from "@/src/components/Button";
 import { defaultPizzaImage } from "@/src/components/ProductListItem";
-import { Stack, useLocalSearchParams } from "expo-router";
+import { Stack, useLocalSearchParams, useRouter } from "expo-router";
 import { useState } from "react";
 import { Image, Text, View, StyleSheet, Pressable } from "react-native";
+import { useCart } from "../../providers/CartProvider";
+import type { PizzaSize } from "@/src/types";
 
-const sizes = ["S", "M", "L", "XL"];
+const sizes: PizzaSize[] = ["S", "M", "L", "XL"];
 
 const ProductDetailScreen = () => {
     const { id } = useLocalSearchParams();
 
-    const [selectedSize, setSelectedSize] = useState("M");
+    const { addItem } = useCart();
+
+    const router = useRouter();
+
+    const [selectedSize, setSelectedSize] = useState<PizzaSize>("M");
 
     const foundProduct = products.find((item) => item.id.toString() === id);
 
     const addToCart = () => {
-        console.warn("MMD", selectedSize);
+        if (!foundProduct) {
+            return;
+        }
+        addItem(foundProduct, selectedSize);
+        router.push("/cart");
     };
 
     if (!foundProduct) {
@@ -35,10 +45,10 @@ const ProductDetailScreen = () => {
             <Text>Select Size</Text>
 
             <View style={styles.sizes}>
-                {sizes.map((item, index) => {
+                {sizes.map((item) => {
                     return (
                         <Pressable
-                            key={index}
+                            key={item}
                             style={[styles.size, { backgroundColor: selectedSize === item ? "gainsboro" : "white" }]}
                             onPress={() => setSelectedSize(item)}
                         >
