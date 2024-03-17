@@ -1,6 +1,10 @@
-# Food Ordering Application using React Native and Expo
+# Food Ordering Full Stack Application :zap:
 
-#### this project is inspired by [notJust.dev youtube channel](https://youtu.be/rIYzLhkG9TA?si=Ybik5oK8NVPdHaiN) and the real project is also open sourced and ready to use in this [repo](https://github.com/notJust-dev/FoodOrdering/tree/main)
+**Work in Progress :construction:**
+
+#### Hey Guys :technologist:
+
+#### This project is inspired by [notJust.dev youtube channel](https://youtu.be/rIYzLhkG9TA?si=Ybik5oK8NVPdHaiN) and the real project is also open sourced and ready to use in this [repo](https://github.com/notJust-dev/FoodOrdering/tree/main)
 
 so feel free to use both versions :)
 
