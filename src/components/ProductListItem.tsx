@@ -12,7 +12,7 @@ export const defaultPizzaImage = "https://notjustdev-dummy.s3.us-east-2.amazonaw
 export const ProductListItem = ({ product }: IProductListItemProps) => {
     return (
         <View style={styles.container}>
-            <Image source={{ uri: product.image || defaultPizzaImage }} style={styles.image} />
+            <Image resizeMode="contain" source={{ uri: product.image || defaultPizzaImage }} style={styles.image} />
             <Text style={styles.title}>{product.name}</Text>
             <Text style={styles.price}>${product.price}</Text>
         </View>
@@ -21,7 +21,9 @@ export const ProductListItem = ({ product }: IProductListItemProps) => {
 
 const styles = StyleSheet.create({
     container: {
+        flex: 1,
         padding: 10,
+        maxWidth: "50%",
         borderRadius: 20,
     },
     title: {
